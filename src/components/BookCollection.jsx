@@ -3,7 +3,8 @@ import BookCard from "./BooksCard";
 import { useContext } from "react";
 import { createContext } from "react";
 import { Cartcontext } from "../CartContext/Context";
-const BACKEND_URL = import.meta.env.VITE_LOCAL_URL;
+import { URL } from "../api/api";
+const BACKEND_URL = URL;
 
 const BookCollection = () => {
   const [books, setBooks] = useState([]);

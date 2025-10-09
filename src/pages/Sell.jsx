@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+import { URL } from "../api/api";
+const BACKEND_URL = URL;
 
 const Sell = () => {
   const [form, setForm] = useState({

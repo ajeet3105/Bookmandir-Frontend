@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+import { URL } from "../api/api";
+const BACKEND_URL = URL;
 
 
 const SignIn = () => {

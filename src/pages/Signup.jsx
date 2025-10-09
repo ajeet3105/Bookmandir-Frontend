@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+import { URL } from "../api/api";
+const BACKEND_URL = URL;
 
 const Signup = () => {
   // const [name, setName] = useState("");

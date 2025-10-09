@@ -3,7 +3,8 @@
 import { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import io from "socket.io-client";
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+import { URL } from "../api/api";
+const BACKEND_URL = URL;
 
 const socket = io(BACKEND_URL, { withCredentials: true });
 
