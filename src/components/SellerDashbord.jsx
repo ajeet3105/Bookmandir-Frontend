@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import io from "socket.io-client";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
-const socket = io("http://localhost:5000", { withCredentials: true });
+const socket = io(BACKEND_URL, { withCredentials: true });
 
 const SellerDashboard = () => {
   const [books, setBooks] = useState([]);
@@ -25,7 +26,7 @@ const SellerDashboard = () => {
   }, [sellerId]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/my-books", {
+    fetch(`${BACKEND_URL}/api/my-books`, {
       method: "GET",
       credentials: "include",
     })

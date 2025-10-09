@@ -3,6 +3,7 @@ import BookCard from "./BooksCard";
 import { useContext } from "react";
 import { createContext } from "react";
 import { Cartcontext } from "../CartContext/Context";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const BookCollection = () => {
   const [books, setBooks] = useState([]);
@@ -18,7 +19,7 @@ const BookCollection = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/get");
+        const res = await fetch(`${BACKEND_URL}/api/get`);
         const data = await res.json();
         setBooks(data);
       } catch (error) {

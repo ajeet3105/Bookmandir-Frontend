@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Topbar = ({ user, setUser }) => {
   const [selected, setSelected] = useState("");
@@ -13,7 +14,7 @@ const Topbar = ({ user, setUser }) => {
       setUser(null);
       localStorage.removeItem("user");
       navigate("/");
-      fetch("http://localhost:5000/api/logout", {
+      fetch(`${BACKEND_URL}/api/logout`, {
         method: "POST",
         credentials: "include",
       }).catch(console.error); 

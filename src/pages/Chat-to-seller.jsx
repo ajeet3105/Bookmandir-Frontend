@@ -3,8 +3,9 @@
 import { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import io from "socket.io-client";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
-const socket = io("http://localhost:5000", { withCredentials: true });
+const socket = io(BACKEND_URL, { withCredentials: true });
 
 const ChatPage = () => {
   const location = useLocation();
@@ -31,7 +32,7 @@ const ChatPage = () => {
   useEffect(() => {
     if (!buyerId || !sellerId || !bookId) return;
 
-    fetch("http://localhost:5000/api/start-chat", {
+    fetch(`${BACKEND_URL}/api/start-chat`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ buyerId, sellerId, bookId }),

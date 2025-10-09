@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Sell = () => {
   const [form, setForm] = useState({
@@ -31,7 +32,7 @@ const Sell = () => {
       data.append("image", image);
     }
 
-    const res = await fetch("http://localhost:5000/api/sell", {
+    const res = await fetch(`${BACKEND_URL}/api/sell`, {
       method: "POST",
       body: data,
       credentials: "include", // 👈 important for protect

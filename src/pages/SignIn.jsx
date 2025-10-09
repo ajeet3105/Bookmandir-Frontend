@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 
 const SignIn = () => {
@@ -24,7 +25,7 @@ const SignIn = () => {
     e.preventDefault();
     // Filhal frontend alert, backend integration ke liye API call yahan hoga
     try {
-      const res = await fetch("http://localhost:5000/api/signin", {
+      const res = await fetch(`${BACKEND_URL}/api/signin`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include", //  this is the key line
