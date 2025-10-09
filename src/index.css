@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@keyframes fade {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.animate-fade {
+  animation: fade 5s forwards;
+}
+   /* body {
+    font-family: 'Playfair Display', serif;
+            background-color: #f8f5f0;
+            color: #3a3a3a;
+        } */
