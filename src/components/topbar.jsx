@@ -123,7 +123,7 @@ const Topbar = ({ user, setUser }) => {
   };
 
   return (
-    <div className="bg-green-600 text-white px-4 py-2 flex justify-between items-center">
+    <div className="bg-green-600 text-white px-4 py-1 flex justify-between items-center">
       <div>🌐 English | $</div>
 
       <div className="flex items-center space-x-4 relative" ref={dropdownRef}>
@@ -132,7 +132,7 @@ const Topbar = ({ user, setUser }) => {
             {/* User Button */}
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="bg-white text-green-600 font-semibold px-4 py-1 rounded hover:bg-green-50 transition cursor-pointer"
+              className="bg-white text-green-600 font-semibold px-4 py-0.5 rounded hover:bg-green-50 transition cursor-pointer"
               title={user.name} // Full name on hover
             >
               {user.name.length > 5 ? `${user.name.slice(0, 5)}..` : user.name}
