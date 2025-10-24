@@ -17,10 +17,16 @@ const Header = () => {
   return (
     <>
       <header className="bg-white shadow-md sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div className="container mx-auto px-4 py-2 flex justify-between items-center">
           {/* Logo */}
           <div className="text-2xl md:text-3xl font-bold text-green-700">
-            <Link to="/">BOOKMANDIR</Link>
+            <Link to="/">
+              <img
+                src="/favicon.svg"
+                alt="Bookmadir"
+                className="h-8 md:h-11 "
+              />
+            </Link>
           </div>
 
           {/* Desktop Nav */}
