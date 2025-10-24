@@ -5,13 +5,13 @@ import { useOutletContext } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import { URL } from "../api/api";
+import toast from "react-hot-toast";
 const BACKEND_URL = URL;
-
 
 const SignIn = () => {
   const { setUser } = useOutletContext(); // get user setter from Home
   const navigate = useNavigate(); //  hook for navigation
-  
+
   const [showpassword, setshowpassword] = useState(false);
 
   const [signin, setsignin] = useState({
@@ -24,7 +24,6 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Filhal frontend alert, backend integration ke liye API call yahan hoga
     try {
       const res = await fetch(`${BACKEND_URL}/api/signin`, {
         method: "POST",
@@ -37,10 +36,10 @@ const SignIn = () => {
         setUser(result.user); //  update Topbar immediately
         localStorage.setItem("user", JSON.stringify(result.user)); // persist
         setsignin({ email: "", password: "" });
-        alert("User login successfully ✅");
+        toast.success("User login successfully .");
         navigate("/"); //  redirect to Home page
       } else {
-        alert("Error: " + result.message);
+        toast.error("Error:" + result.message);
       }
     } catch (error) {}
     // alert(`Email: ${signin.email}\nPassword: ${signin.password}`);
@@ -68,28 +67,28 @@ const SignIn = () => {
           </div>
 
           <div>
-          <label className="block mb-1 font-medium">Password</label>
-          <div className="relative">
-            <input
-              type={showpassword ? "text" : "password"} //  toggle
-              placeholder="Enter your password"
-              id="password"
-              value={signin.password}
-              onChange={(e) => hanldechange(e)}
-              required
-              className="w-full px-3 py-2 pr-10 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-600"
-            />
+            <label className="block mb-1 font-medium">Password</label>
+            <div className="relative">
+              <input
+                type={showpassword ? "text" : "password"} //  toggle
+                placeholder="Enter your password"
+                id="password"
+                value={signin.password}
+                onChange={(e) => hanldechange(e)}
+                required
+                className="w-full px-3 py-2 pr-10 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-600"
+              />
 
-            {/* Eye toggle button */}
-            <button
-              type="button"
-              onClick={() => setshowpassword(!showpassword)}
-              className="absolute inset-y-0 right-3 flex items-center text-gray-600 cursor-pointer"
-            >
-              {showpassword ? <EyeOff size={20} /> : <Eye size={20} />}
-            </button>
+              {/* Eye toggle button */}
+              <button
+                type="button"
+                onClick={() => setshowpassword(!showpassword)}
+                className="absolute inset-y-0 right-3 flex items-center text-gray-600 cursor-pointer"
+              >
+                {showpassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
           </div>
-        </div>
 
           <button
             type="submit"

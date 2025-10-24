@@ -1,5 +1,6 @@
 import { ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const BookCard = ({ Book, addToCart }) => {
   const navigate = useNavigate();
@@ -8,7 +9,9 @@ const BookCard = ({ Book, addToCart }) => {
   const handleAddToCart = () => {
     if (isLoggedIn) {
       addToCart(Book);
-      alert("✅ Book added to cart successfully!");
+      // alert("✅ Book added to cart successfully!");
+      toast.success("Book added to cart successfully!")
+
     } else {
       navigate("/signin"); // login page pe bhej do
     }

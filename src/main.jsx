@@ -20,6 +20,7 @@ import Card from "./pages/Card.jsx";
 import About from "./pages/About.jsx";
 import ChatPage from "./pages/Chat-to-seller.jsx";
 import SellerDashboard from "./components/SellerDashbord.jsx";
+import { Toaster } from "react-hot-toast";
 // import SellerDashboardWrapper from "./components/SellerDashboardWrapper.jsx";
 
 const router = createBrowserRouter([
@@ -67,17 +68,6 @@ const router = createBrowserRouter([
         path: "chat/:seller",
         element: <ChatPage />,
       },
-
-      // {
-      //   path: "seller-dashboard",
-      //   element: <SellerDashboardWrapper />, // wrapper for seller
-      //   children: [
-      //     {
-      //       index: true,
-      //       element: <SellerDashboard />, // actual content inside wrapper
-      //     },
-      //   ],
-      // },
       {
         path: "user/profile",
         element: <SellerDashboard />, // for buyer (simple profile)
@@ -101,6 +91,16 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+     <Toaster
+      position="top-center"
+      reverseOrder={false}
+      toastOptions={{
+        style: {
+          background: "#333",
+          color: "#fff",
+        },
+      }}
+    />
     <RouterProvider router={router} />
   </StrictMode>
 );

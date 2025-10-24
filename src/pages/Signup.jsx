@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import { URL } from "../api/api";
+import toast from "react-hot-toast";
 const BACKEND_URL = URL;
 
 const Signup = () => {
@@ -24,12 +25,6 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // if (password !== confirmPassword) {
-    //   alert("Passwords do not match!");
-    //   return;
-    // }
-
     try {
       const res = await fetch(`${BACKEND_URL}/api/signup`, {
         method: "POST",
@@ -39,13 +34,13 @@ const Signup = () => {
 
       const result = await res.json();
       if (res.ok) {
-        alert("User registered successfully ✅");
+        toast.success("User registerd successfully");
         setsignup({ name: "", email: "", password: "", confirmPassword: "" });
       } else {
-        alert("Error: " + result.message);
+        toast.error("Error: " + result.message);
       }
     } catch (err) {
-      alert("Something went wrong!");
+      toast.error("Something went wrong!")
     }
   };
 
@@ -144,9 +139,9 @@ const Signup = () => {
 
         <div className="text-sm text-center mt-4">
           Already have an account?{" "}
-          <Link to="/signin" className="text-green-600 hover:underline">
+          {/* <Link to="/signin" className="text-green-600 hover:underline">
             Sign In
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>

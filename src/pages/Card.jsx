@@ -2,13 +2,13 @@ import { useContext } from "react";
 import { Cartcontext } from "../CartContext/Context";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 const Card = () => {
   const { cart, setCart } = useContext(Cartcontext);
   const navigate = useNavigate(); // useNavigate hook
   // const buyerId = localStorage.getItem("user"); // logged-in buyer
-const buyer = JSON.parse(localStorage.getItem("user"));
-const buyerId = buyer?.id || buyer?._id;
-  
+  const buyer = JSON.parse(localStorage.getItem("user"));
+  const buyerId = buyer?.id || buyer?._id;
 
   const removeFromCart = (id) => {
     const updatedCart = cart.filter((item) => item._id !== id);
@@ -16,15 +16,14 @@ const buyerId = buyer?.id || buyer?._id;
     localStorage.setItem("cart", JSON.stringify(updatedCart)); // localStorage bhi update hoga
   };
 
-const ChatToSeller = (sellerId, bookId) => {
-  if (!buyerId) {
-    alert("Please login first to chat!");
-    navigate("/SignIn");
-    return;
-  }
-  navigate(`/chat/${sellerId}`, { state: { buyerId,sellerId, bookId } }); // ✅ send both
-};
-
+  const ChatToSeller = (sellerId, bookId) => {
+    if (!buyerId) {
+      toast.error("Please login first to char!");
+      navigate("/SignIn");
+      return;
+    }
+    navigate(`/chat/${sellerId}`, { state: { buyerId, sellerId, bookId } }); //  send both
+  };
 
   return (
     <div className="">

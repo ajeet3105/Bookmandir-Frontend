@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { URL } from "../api/api";
+import toast from "react-hot-toast";
 const BACKEND_URL = URL;
 
 const Sell = () => {
@@ -36,14 +37,15 @@ const Sell = () => {
     const res = await fetch(`${BACKEND_URL}/api/sell`, {
       method: "POST",
       body: data,
-      credentials: "include", // 👈 important for protect
+      credentials: "include", //  important for protect
     });
 
     const result = await res.json();
 
     // setBooks([...books,result]);
     if (res.ok) {
-      alert("Book submitted successfully ✅");
+      // alert("Book submitted successfully ✅");
+      toast.success("Book submitted successfully")
       setForm({
         bookTitle: "",
         author: "",
@@ -55,7 +57,8 @@ const Sell = () => {
       });
       setImage(null);
     } else {
-      alert("Error:" + result.message);
+      // alert("Error:" + result.message);
+      toast.error("Error: " + result.message);
     }
   };
 
