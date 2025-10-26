@@ -59,7 +59,7 @@ const ChatPage = () => {
     const sortedIds = [buyerId, sellerId].sort().join("-");
     const room = `chat-${bookId}-${sortedIds}`;
     socket.emit("send_message", { room, senderId: myId, message, buyerId, sellerId });
-    setChat((prev) => [...prev, { senderId: myId, message }]);
+    // setChat((prev) => [...prev, { senderId: myId, message }]);
     setMessage("");
   };
 

@@ -3,6 +3,8 @@ import BookCard from "./BooksCard";
 import { useContext } from "react";
 import { createContext } from "react";
 import { Cartcontext } from "../CartContext/Context";
+import { Riple } from "react-loading-indicators";
+
 import { URL } from "../api/api";
 const BACKEND_URL = URL;
 
@@ -10,6 +12,8 @@ const BookCollection = () => {
   const [books, setBooks] = useState([]);
 
   const [category, setCategory] = useState("all"); // selected category
+
+  const [loading, setLoading] = useState(true);
 
   const { cart, setCart } = useContext(Cartcontext);
 
@@ -25,6 +29,8 @@ const BookCollection = () => {
         setBooks(data);
       } catch (error) {
         console.error("Error fetching books:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchBooks();
@@ -69,7 +75,7 @@ const BookCollection = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+        {/* <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
           {filteredBooks.length > 0 ? (
             filteredBooks.map((book, i) => (
               <BookCard key={i} Book={book} addToCart={handleAddToCart} />
@@ -80,6 +86,31 @@ const BookCollection = () => {
             </p>
           )}
         </div>
+      </div>
+    </section> */}
+        {/* Loader Section */}
+        {loading ? (
+          <div className="flex justify-center items-center py-12">
+            <Riple
+              color="#32cd32"
+              size="medium"
+              text="Loading Books..."
+              textColor="#32cd32"
+            />
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+            {filteredBooks.length > 0 ? (
+              filteredBooks.map((book, i) => (
+                <BookCard key={i} Book={book} addToCart={handleAddToCart} />
+              ))
+            ) : (
+              <p className="col-span-full text-center text-gray-500">
+                No books available in this category
+              </p>
+            )}
+          </div>
+        )}
       </div>
     </section>
   );
